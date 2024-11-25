@@ -1,0 +1,1 @@
+mongoose.connect(process.env.MONGO_CONNECTION_ID)  for MONGO_CONNECTION_ID inside link taken from the mongo data base after successfull creation of data base.
