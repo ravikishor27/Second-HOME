@@ -1,1 +1,9 @@
 mongoose.connect(process.env.MONGO_CONNECTION_ID)  for MONGO_CONNECTION_ID inside link taken from the mongo data base after successfull creation of data base.
+
+
+in the root path PS C:\Users\HeliosHere\MERN STACK> 
+install these modules 
+1.express
+2.mongoose
+3.dotnet
+4.bcryptjs
