@@ -1,9 +1,11 @@
 mongoose.connect(process.env.MONGO_CONNECTION_ID)  for MONGO_CONNECTION_ID inside link taken from the mongo data base after successfull creation of data base.
 
+run the ui application in the C:\Users\HeliosHere\MERN STACK\client in this path cmd is 'npm run dev'
 
-in the root path PS C:\Users\HeliosHere\MERN STACK> 
+in the root path PS C:\Users\HeliosHere\MERN STACK> and also run server on the same path 'npm run dev'
 install these modules 
 1.express
 2.mongoose
 3.dotnet
 4.bcryptjs
+5.jsonwebtoken

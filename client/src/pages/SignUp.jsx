@@ -33,7 +33,7 @@ export default function Signup() {
       }
       setLoading(false);
       setError(null);  // if no error exist then it will show no message
-      navigate('/SignIn'); // if given details like usernamae and  other details are correct then it will navigate to signIn page
+      navigate('/SignIn');
     } catch (error) {
       setLoading(false);
       setError(error.message);
@@ -71,7 +71,7 @@ export default function Signup() {
           disabled={Loading}
           className="p-3 bg-slate-700 rounded-xl border text-white hover:bg-opacity-95 disabled:opacity-80"  
         >
-          {Loading ? 'Loading...': 'Sign Up'}
+          {Loading ? 'Loading...': 'SIGN UP'}
         </button>
       </form>
       <div className="flex gap-2 mt-3">
