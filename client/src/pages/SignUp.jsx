@@ -3,14 +3,14 @@ import { Link ,useNavigate} from "react-router-dom";
 import { useState } from "react";
 
 export default function Signup() {
-  const [FormData, setFormData] = useState({});
-  const [Error, setError]=useState(null);
-  const [Loading, setLoading]= useState(false);
+  const [formData, setFormData] = useState({});
+  const [error, setError]=useState(null);
+  const [loading, setLoading]= useState(false);
   const navigate= useNavigate();
 
   const handleChange = (e) => {
     setFormData({
-      ...FormData,
+      ...formData,
       [e.target.id]: e.target.value,
     });
   };
@@ -23,7 +23,7 @@ export default function Signup() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(FormData),
+        body: JSON.stringify(formData),
       });
       const data = await res.json();
       if (data.success === false) {
@@ -41,7 +41,7 @@ export default function Signup() {
 
     console.log(data);
   };
-  console.log(FormData);
+  console.log(formData);
   return (
     <div className="p-3 max-w-lg mx-auto items-center">
       <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
@@ -68,10 +68,10 @@ export default function Signup() {
           onChange={handleChange}
         />
         <button
-          disabled={Loading}
+          disabled={loading}
           className="p-3 bg-slate-700 rounded-xl border text-white hover:bg-opacity-95 disabled:opacity-80"  
         >
-          {Loading ? 'Loading...': 'SIGN UP'}
+          {loading ? 'Loading...': 'SIGN UP'}
         </button>
       </form>
       <div className="flex gap-2 mt-3">
@@ -80,7 +80,7 @@ export default function Signup() {
           <span className="text-blue-500">Sign in</span>
         </Link>
       </div>
-      {Error && <p className="text-red-600 mt-5">{Error}</p>}
+      {error && <p className="text-red-600 mt-5">{error}</p>}
     </div>
   );
 }
