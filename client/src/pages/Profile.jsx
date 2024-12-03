@@ -8,7 +8,7 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-import { updateUserFailure, updateUserStart, updateUserSuccess } from "../redux/user/userSlice.js";
+import { deleteUserFailure, deleteUserStart, deleteUserSuccess, updateUserFailure, updateUserStart, updateUserSuccess } from "../redux/user/userSlice.js";
 import { useDispatch } from "react-redux";
 
 export default function Profile() {
@@ -19,6 +19,7 @@ export default function Profile() {
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const dispatch = useDispatch();
 
   // add this rules in firebase after match/{allPaths=**}{
   // allow read;
@@ -35,7 +36,7 @@ export default function Profile() {
     const fileName = new Date().getTime() + file.name;
     const storageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(storageRef, file);
-    const dispatch = useDispatch();
+    
 
     uploadTask.on(
       "state_changed",
@@ -82,6 +83,24 @@ export default function Profile() {
       setUpdateSuccess(true);
     } catch (error) {
       dispatch(updateUserFailure(error.message)); 
+    }
+  };
+
+  const handleDeleteuser = async ()=>{
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`,{
+        method : `DELETE`,
+      });
+      const data = await res.json();
+      if (data.success === false){
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+      
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));  
     }
   }
 
@@ -138,8 +157,8 @@ export default function Profile() {
         </button>
       </form>
       <div className="flex flex-row justify-between mt-4">
-        <span className="text-red-700">Delete Account</span>
-        <span className="text-red-700">Sign Out</span>
+        <span onClick={handleDeleteuser} className="text-red-700 cursor-pointer">Delete Account</span>
+        <span className="text-red-700 cursor-pointer">Sign Out</span>
       </div>
 
       <p className="text-red-700 mt-5">{error ? error : ``}</p>
