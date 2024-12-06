@@ -2,7 +2,7 @@ import React from "react";
 import { Link ,useNavigate} from "react-router-dom";
 import { useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
-import { signInStart,signInSuccess,signInfailure } from "../redux/user/userSlice";
+import { signInStart,signInSuccess,signInFailure } from "../redux/user/userSlice";
 import OAuth from "../components/OAuth";
 export default function Signin() {
   const [formData, setFormData] = useState({});
@@ -30,13 +30,13 @@ export default function Signin() {
       });
       const data = await res.json();
       if (data.success === false) {
-        dispatch(signInfailure(data.message));
+        dispatch(signInFailure(data.message));
         return;
       }
       dispatch(signInSuccess(data))  // if no error exist then it will show no message
       navigate('/');
     } catch (error) {
-      dispatch(signInfailure(error.message))
+      dispatch(signInFailure(error.message))
     }
 
     console.log(data);
@@ -64,7 +64,7 @@ export default function Signin() {
           disabled={loading}
           className="p-3 bg-slate-700 rounded-xl border text-white hover:bg-opacity-95 disabled:opacity-80"  
         >
-          {loading ? 'Loading...': 'SIGN IN'}
+          {loading ? "LOADING..": 'SIGN IN'}
         </button>
         <OAuth/>
       </form>

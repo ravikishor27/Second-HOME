@@ -66,7 +66,7 @@ const userSlice = createSlice({
 export const {
   signInStart,
   signInSuccess,
-  signInfailure,
+  signInFailure,
   updateUserFailure,
   updateUserSuccess,
   updateUserStart,
