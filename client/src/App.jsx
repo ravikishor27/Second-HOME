@@ -12,7 +12,7 @@ import CreateLisiting from "./pages/CreateLisiting";
 import UpdateListing from "./pages/UpdateListing";
 import Listing from "./pages/Listing";
 
-///:listingId
+//
 
 export default function App() {
   return (
@@ -23,12 +23,11 @@ export default function App() {
         <Route path="/SignIn" element={<Signin />} />
         <Route path="/SignUp" element={<Signup />} />
         <Route path="/About" element={<About />} />
+        <Route path='/listing/:listingId' element={<Listing />} />
         <Route element={<PrivateRoute />}>
           <Route path="/Profile" element={<Profile />} />
           <Route path="/create-listing" element={<CreateLisiting/>}/>
           <Route path="/update-listing/:listingId" element ={<UpdateListing/>}/>
-          <Route path='/listing' element={<Listing />} />
-
         </Route>
       </Routes>
     </BrowserRouter>
